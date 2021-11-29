@@ -22,7 +22,7 @@ export default function WithLogin({ children }) {
         Cookies.remove("auth_token");
       }
     };
-    checkAuth()
+    checkAuth();
   }, [service]);
 
   function handleSubmit(event) {
@@ -36,43 +36,46 @@ export default function WithLogin({ children }) {
     return children;
   } else {
     return (
-      <div className="LoginForm">
+      <div className="CenterPage">
         <form onSubmit={handleSubmit}>
           <table>
-            <tr>
-              <td>
-                <label htmlFor="username">Username: </label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={user}
-                  onChange={(e) => {
-                    setUser(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label htmlFor="password">Password: </label>
-              </td>
-              <td>
-                <input
-                  type="password"
-                  value={pass}
-                  onChange={(e) => {
-                    setPass(e.target.value);
-                  }}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td className="Submit">
-                <input type="submit" value="Submit" />
-              </td>
-            </tr>
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>
+                  <label htmlFor="username">Username: </label>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    value={user}
+                    onChange={(e) => {
+                      setUser(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label htmlFor="password">Password: </label>
+                </td>
+                <td>
+                  <input
+                    type="password"
+                    value={pass}
+                    onChange={(e) => {
+                      setPass(e.target.value);
+                    }}
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td className="Submit">
+                  <input type="submit" value="Submit" />
+                </td>
+              </tr>
+            </tbody>
           </table>
         </form>
       </div>

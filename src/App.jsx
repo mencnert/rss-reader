@@ -5,15 +5,13 @@ import {
 } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import QueuePage from "./pages/QueuePage";
-import TodoPage from "./pages/TodoPage";
+import RssListPage from "./pages/RssListPage";
 
 export default function App() {
   return (
     <Routes>
       <Route path="/rss-reader" element={<HomePage />} />
-      <Route path="/rss-reader/queue" element={<QueuePage />} />
-      <Route path="/rss-reader/todo" element={<TodoPage />} />
+      <Route path="/rss-reader/list" element={<RssListPage />} />
     </Routes>
   );
 }

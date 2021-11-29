@@ -1,0 +1,41 @@
+.viewed {
+  background-color: #f2f2f2;
+}
+.disabled {
+  color: gray;
+}
+.rss-list {
+  box-sizing: border-box;
+  border-collapse: collapse;
+  width: 100vw;
+}
+.rss-col {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  padding: 8px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+}
+
+.filter {
+  flex-grow: 1;
+  text-align: center;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+.active {
+  background-color: rgb(105, 173, 3);
+}
+
+@media only screen and (min-width: 768px) {
+  .rss-list {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    max-width: 768px;
+  }
+}

@@ -5,10 +5,7 @@ export default function HomePage() {
   return (
     <div>
       <button>
-        <Link to="/rss-reader/queue">Queue</Link>
-      </button>
-      <button>
-        <Link to="/rss-reader/todo">Todo</Link>
+        <Link to="/rss-reader/list">RSS List</Link>
       </button>
     </div>
   );
