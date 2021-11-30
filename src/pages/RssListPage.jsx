@@ -47,7 +47,9 @@ export default function RssListPage() {
     <>
       <div className="filters">
         <div
-          className={`filter ${filter === "ALL" ? "active" : ""}`}
+          className={`filter clickable ${
+            filter === "ALL" ? "active-filter" : ""
+          }`}
           onClick={() => {
             setFilter("ALL");
           }}
@@ -55,7 +57,9 @@ export default function RssListPage() {
           ALL
         </div>
         <div
-          className={`filter ${filter === "UNSEEN" ? "active" : ""}`}
+          className={`filter clickable ${
+            filter === "UNSEEN" ? "active-filter" : ""
+          }`}
           onClick={() => {
             setFilter("UNSEEN");
           }}
@@ -63,7 +67,9 @@ export default function RssListPage() {
           UNSEEN
         </div>
         <div
-          className={`filter ${filter === "SAVED" ? "active" : ""}`}
+          className={`filter clickable ${
+            filter === "SAVED" ? "active-filter" : ""
+          }`}
           onClick={() => {
             setFilter("SAVED");
           }}
@@ -71,75 +77,104 @@ export default function RssListPage() {
           SAVED
         </div>
       </div>
-      <table className="rss-list">
-        <thead></thead>
-        <tbody>
-          {filteredRssList.map((rss, i) => (
-            <RssRow
-              rss={rss}
-              updateRss={(newState) => {
-                const newRssList = rssList.map((v) => {
-                  if (v.id === newState.id) {
-                    return newState;
-                  } else {
-                    return v;
-                  }
-                });
-                setRssList(newRssList);
-              }}
-              key={rss.id}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="rss-list">
+        {filteredRssList.map((rss, i) => (
+          <RssRow
+            rss={rss}
+            updateRss={(newState) => {
+              const newRssList = rssList.map((v) => {
+                if (v.id === newState.id) {
+                  return newState;
+                } else {
+                  return v;
+                }
+              });
+              setRssList(newRssList);
+            }}
+            key={rss.id}
+          />
+        ))}
+      </div>
     </>
   );
 }
 
 function RssRow({ rss, updateRss }) {
   const { service } = useService();
+
   return (
-    <tr className={rss.viewed && !rss.saved ? "viewed disabled" : ""}>
-      <td
-        className="rss-col"
-        onClick={() => {
-          const update = async () => {
-            const ok = await service.updateById(rss.id, rss.viewed, !rss.saved);
-            if (ok) {
-              updateRss({ ...rss, saved: !rss.saved });
-            } else {
-              alert("Update failed");
-            }
-          };
-          update();
-        }}
-      >
-        <BookmarkIcon className={rss.saved ? "" : "disabled"} />
-      </td>
-      <td
-        className="rss-col"
+    <div
+      className={
+        rss.viewed && !rss.saved ? "rss-row viewed disabled" : "rss-row"
+      }
+    >
+      <div
+        className="rss-title clickable"
         onClick={() => {
           window.open(rss.url, "_blank").focus();
         }}
       >
         {rss.title}
-      </td>
-      <td
-        className="rss-col"
-        onClick={() => {
-          const update = async () => {
-            const ok = await service.updateById(rss.id, !rss.viewed, rss.saved);
-            if (ok) {
-              updateRss({ ...rss, viewed: !rss.viewed });
-            } else {
-              alert("Update failed");
-            }
-          };
-          update();
-        }}
-      >
-        {rss.viewed ? <VisibilityOffIcon /> : <VisibilityIcon />}
-      </td>
-    </tr>
+      </div>
+
+      <div className="icons">
+        <div
+          onClick={() => {
+            const update = async () => {
+              const ok = await service.updateById(
+                rss.id,
+                rss.viewed,
+                !rss.saved
+              );
+              if (ok) {
+                updateRss({ ...rss, saved: !rss.saved });
+              } else {
+                alert("Update failed");
+              }
+            };
+            update();
+          }}
+        >
+          <BookmarkIcon
+            className={rss.saved ? "clickable" : "clickable disabled"}
+          />
+        </div>
+        <div
+          onClick={() => {
+            const update = async () => {
+              const ok = await service.updateById(
+                rss.id,
+                !rss.viewed,
+                rss.saved
+              );
+              if (ok) {
+                updateRss({ ...rss, viewed: !rss.viewed });
+              } else {
+                alert("Update failed");
+              }
+            };
+            update();
+          }}
+        >
+          <SeenToggleIcon viewed={rss.viewed} />
+        </div>
+      </div>
+    </div>
   );
+}
+
+function SeenToggleIcon({ viewed }) {
+  if (viewed) {
+    return (
+      <div className="clickable">
+        <VisibilityOffIcon />
+      </div>
+    );
+  } else {
+    return (
+      <div className="clickable">
+        <VisibilityIcon />
+      </div>
+    );
+  }
 }

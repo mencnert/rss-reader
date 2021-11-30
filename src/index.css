@@ -8,6 +8,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
+.rss-list::-webkit-scrollbar { width: 0 !important }
+
+html {
+    scrollbar-width: none;
+}
+
 @media only screen and (min-width: 768px) {
   #root {
     max-width: 768px;
