@@ -31,11 +31,12 @@ export const createService = (token) => {
                 return res.data
             } catch (err) {
                 console.error("Error during /rss call", err)
+                return []
             }
         },
         updateById: async (id, viewed, saved) => {
             try {
-                const res = await http.put(`/rss/${id}`, {viewed, saved})
+                const res = await http.put(`/rss/${id}`, { viewed, saved })
                 if (res.status !== 200) {
                     console.error("Error during /rss/id call", res.status, res.data)
                     return false
@@ -44,6 +45,20 @@ export const createService = (token) => {
             } catch (err) {
                 console.error("Error during /rss/id call", err)
                 return false
+            }
+        },
+        getNextFromQueue: async () => {
+            try {
+                const res = await http.get('/rss/queue/next')
+                if (res.status !== 200) {
+                    console.error("Error during /rss/queue/next call", res.status, res.data)
+                    return { count: 0 }
+                }
+
+                return res.data
+            } catch (err) {
+                console.error("Error during /rss/queue/next call", err)
+                return { count: 0 }
             }
         }
     }
