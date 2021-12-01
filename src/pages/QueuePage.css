@@ -1,0 +1,39 @@
+.count {
+  padding: 1em;
+  border: 1px solid black;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  padding: 1em;
+  flex-grow: 1;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+.details {
+  padding: 8px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  box-sizing: border-box;
+}
+.title {
+  height: 70vh;
+}
+@media only screen and (min-width: 768px) {
+  .footer {
+    max-width: 768px;
+  }
+}
