@@ -56,7 +56,7 @@ function RssDetail({ rss }) {
         window.open(rss.url, "_blank").focus();
       }}
     >
-      <div>Status: {rss.rank}</div>
+      <div>Rank: {rss.rank}</div>
       <div>Title: </div>
       <hr />
       <div className="title">{rss.title}</div>
