@@ -16,11 +16,13 @@
 }
 
 .content {
+  height: inherit;
   display: flex;
   flex-direction: column;
 }
 .details {
   padding: 8px;
+  flex: 1 1 auto;
 }
 
 .footer {
@@ -29,9 +31,7 @@
   width: 100vw;
   box-sizing: border-box;
 }
-.title {
-  height: 70vh;
-}
+
 @media only screen and (min-width: 768px) {
   .footer {
     max-width: 768px;

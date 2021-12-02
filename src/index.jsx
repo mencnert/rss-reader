@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
 import App from "./App";
@@ -12,9 +11,7 @@ ReactDOM.render(
   <React.StrictMode>
     <WithService>
       <WithLogin>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <App />
       </WithLogin>
     </WithService>
   </React.StrictMode>,

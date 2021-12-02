@@ -1,6 +1,8 @@
 import * as React from "react";
+
 import RssListPage from "./pages/RssListPage";
 import QueuePage from "./pages/QueuePage";
+import CleanQueuePage from "./pages/CleanQueuePage";
 
 export default function App() {
   const [router, setRouter] = React.useState("/");
@@ -15,6 +17,7 @@ export default function App() {
         >
           Rss List
         </div>
+
         <div
           className="menu-item"
           onClick={() => {
@@ -23,6 +26,16 @@ export default function App() {
         >
           Rss Queue
         </div>
+
+        <div
+          className="menu-item"
+          onClick={() => {
+            setRouter("/clean-queue");
+          }}
+        >
+          Clean Queue
+        </div>
+
       </div>
     );
   }
@@ -32,6 +45,10 @@ export default function App() {
 
   if (router === "/queue") {
     return <QueuePage />;
+  }
+
+  if (router === "/clean-queue") {
+    return <CleanQueuePage />;
   }
 
   return <div>Page '{router}' not fount</div>;

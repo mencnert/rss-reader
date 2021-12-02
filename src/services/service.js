@@ -60,6 +60,20 @@ export const createService = (token) => {
                 console.error("Error during /rss/queue/next call", err)
                 return { count: 0 }
             }
+        },
+        cleanRssQueue: async () => {
+            try {
+                const res = await http.delete('/rss/queue/clean')
+                if (res.status !== 200) {
+                    console.error("Error during /rss/queue/clean call", res.status, res.data)
+                    return false
+                }
+
+                return true
+            } catch (err) {
+                console.error("Error during /rss/queue/clean call", err)
+                return false
+            }
         }
     }
 }
